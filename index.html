@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HourGlass Wiki — Community Archive</title>
+  <link rel="stylesheet" href="assets/css/wiki.css" />
+</head>
+<body>
+
+  <div class="topbar">
+    <div class="topbar-left">
+      <a href="index.html" class="logo-icon"><div class="logo-icon-inner"></div></a>
+      <div class="divv"></div>
+      <a href="index.html" class="logo">HourGlass Wiki</a>
+      <div class="divv"></div>
+      <div class="topbar-status">
+        <span><span class="sdot"></span>System Online</span>
+        <span>Node: ARC-07</span>
+        <span>Build: 214</span>
+      </div>
+    </div>
+    <div class="topbar-right">
+      <input class="sbox" type="text" placeholder="Search the archive..." />
+      <div>
+        <div class="clock" id="clk">--:--:--</div>
+        <div class="clock-sub">FRI 2026.04.10</div>
+      </div>
+    </div>
+  </div>
+
+  <nav class="tabbar">
+    <a class="tab active" href="index.html" data-section="home">Home</a>
+    <a class="tab" href="Characters/index.html" data-section="characters">Characters</a>
+    <a class="tab" href="Locations/index.html" data-section="locations">Locations</a>
+    <a class="tab" href="Lore/index.html" data-section="lore">Lore</a>
+    <a class="tab" href="MATCH-Files/index.html" data-section="match">M.A.T.C.H. Files</a>
+    <a class="tab" href="Items/index.html" data-section="items">Items</a>
+    <a class="tab" href="Timeline/index.html" data-section="timeline">Timeline</a>
+  </nav>
+
+  <div class="spoiler-bar" id="spbar">
+    <div class="spi">!</div>
+    <div class="spt"><span class="r">Spoiler Warning:</span> This wiki contains unmarked spoilers for all HourGlass titles. Proceed with caution if you have not completed the games.</div>
+    <div class="sdis" id="sdis">Dismiss</div>
+  </div>
+
+  <div class="hero">
+    <div class="hgrid"></div>
+    <div class="hero-label">Community-maintained archive &nbsp;// &nbsp;All titles &nbsp;// &nbsp;MarrowVeil Studios</div>
+    <div class="hero-title">HourGlass Wiki</div>
+    <div class="hero-sub">The unofficial encyclopedia for the HourGlass universe</div>
+    <div class="hstats">
+      <div class="hsc"><span class="hsc-n">214</span><span class="hsc-l">Articles</span></div>
+      <div class="hsc"><span class="hsc-n">48</span><span class="hsc-l">Characters</span></div>
+      <div class="hsc"><span class="hsc-n">31</span><span class="hsc-l">Locations</span></div>
+      <div class="hsc"><span class="hsc-n">7</span><span class="hsc-l">Incidents</span></div>
+    </div>
+    <div class="hero-btns">
+      <a class="hbtn" href="Characters/index.html">Browse Characters</a>
+      <a class="hbtn sec" href="Locations/index.html">Browse Locations</a>
+    </div>
+  </div>
+
+  <div class="mwrap">
+    <div>
+
+      <div class="sh"><div class="sl">By game</div><div class="sr"></div></div>
+      <div class="gcards">
+        <a class="gc hg" href="Characters/index.html">
+          <div class="ct">Game 01 &nbsp;// &nbsp;Capstone Demo</div>
+          <div class="cn">HourGlass: Missing Time</div>
+          <div class="cd">An urban explorer. A diner that shouldn't exist. Something that giggled in the dark.</div>
+          <div class="cc"><span>84</span> articles</div>
+        </a>
+        <a class="gc mek" href="MATCH-Files/index.html">
+          <div class="ct">ARG &nbsp;// &nbsp;Active</div>
+          <div class="cn">MEK-AI Archive Terminal</div>
+          <div class="cd">Corporate records. Clearance tiers. Things never meant to be found.</div>
+          <div class="cc"><span>61</span> articles</div>
+        </a>
+        <a class="gc lt" href="Characters/index.html">
+          <div class="ct">Game 02 &nbsp;// &nbsp;Announced</div>
+          <div class="cn">HourGlass: Lost Time</div>
+          <div class="cd">Liu Harper returns. He doesn't know why. Three people need to get out alive.</div>
+          <div class="cc"><span>29</span> articles &nbsp;·&nbsp; spoilers</div>
+        </a>
+        <a class="gc lr" href="Lore/index.html">
+          <div class="ct">Game — TBA</div>
+          <div class="cn">Lost Relics</div>
+          <div class="cd">Details classified. Cross-reference M.A.T.C.H. for known fragments.</div>
+          <div class="cc"><span>8</span> articles</div>
+        </a>
+      </div>
+
+      <div class="sh"><div class="sl">Browse by category</div><div class="sr"></div></div>
+      <div class="bgrid">
+        <a class="bi" href="Characters/index.html"><span class="bl">P</span><div class="bn">Personnel</div></a>
+        <a class="bi" href="Locations/index.html"><span class="bl">L</span><div class="bn">Locations</div></a>
+        <a class="bi" href="MATCH-Files/index.html"><span class="bl">I</span><div class="bn">Incidents</div></a>
+        <a class="bi" href="MATCH-Files/index.html"><span class="bl">M</span><div class="bn">M.A.T.C.H. Logs</div></a>
+        <a class="bi" href="Timeline/index.html"><span class="bl">T</span><div class="bn">Timeline</div></a>
+        <a class="bi" href="Items/index.html"><span class="bl">E</span><div class="bn">Items &amp; Evidence</div></a>
+      </div>
+
+      <div class="sh"><div class="sl">Recently updated</div><div class="sr"></div></div>
+      <a class="ri" href="Characters/Liu.html"><div class="rtype">Personnel</div><div><span class="rt">Liu Harper</span><span class="rm">Updated after INC-0019 cross-reference</span></div></a>
+      <a class="ri" href="Locations/index.html"><div class="rtype">Location</div><div><span class="rt">The Diner — Sub-Level Access</span><span class="rm">New section: observation room (Playzone)</span></div></a>
+      <a class="ri" href="MATCH-Files/index.html"><div class="rtype">Incident</div><div><span class="rt">INC-0019 — partial declassification</span><span class="rm">L2 excerpt added. Full record L3 gated.</span></div></a>
+      <a class="ri" href="Characters/index.html"><div class="rtype">Personnel</div><div><span class="rt">S. Vandyke — transfer confirmed</span><span class="rm">Diner → Fairgrounds. Internal leak suspected.</span></div></a>
+      <a class="ri" href="MATCH-Files/index.html"><div class="rtype">M.A.T.C.H.</div><div><span class="rt">Arcade Puzzle — code cycle documentation</span><span class="rm">Green / red signal timing mapped by community</span></div></a>
+
+    </div>
+
+    <div>
+      <div class="sbar">
+        <div class="sbh">Quick navigation</div>
+        <div class="sbb" style="padding:0;">
+          <a class="slink" href="Characters/Liu.html"><span class="a">›</span>Liu Harper</a>
+          <a class="slink" href="Locations/index.html"><span class="a">›</span>The Diner</a>
+          <a class="slink" href="Characters/index.html"><span class="a">›</span>Lucky</a>
+          <a class="slink" href="MATCH-Files/index.html"><span class="a">›</span>M.A.T.C.H. System</a>
+          <a class="slink" href="MATCH-Files/index.html"><span class="a">›</span>MEK-AI Terminal</a>
+          <a class="slink" href="Characters/index.html"><span class="a">›</span>Boa</a>
+          <a class="slink" href="MATCH-Files/index.html"><span class="a">›</span>Arcade Puzzle</a>
+        </div>
+      </div>
+
+      <div class="sbar">
+        <div class="sbh">Clearance tiers</div>
+        <div class="sbb">
+          <div class="ln" style="font-size:11px;color:var(--text-muted);line-height:1.7;">Some articles are gated by M.A.T.C.H. clearance level. <span style="color:var(--red);">Redacted entries</span> require in-game discovery to unlock.</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:12px;">
+            <div style="background:var(--bg-page);border:1px solid var(--border);padding:10px 8px;text-align:center;"><span style="font-size:16px;color:var(--text-bright);display:block;margin-bottom:3px;">L0</span><div style="font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-muted);">Public</div></div>
+            <div style="background:var(--bg-page);border:1px solid var(--border);padding:10px 8px;text-align:center;"><span style="font-size:16px;color:var(--text-bright);display:block;margin-bottom:3px;">L1</span><div style="font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-muted);">Staff</div></div>
+            <div style="background:var(--bg-page);border:1px solid var(--border);padding:10px 8px;text-align:center;opacity:0.38;"><span style="font-size:16px;color:var(--text-bright);display:block;margin-bottom:3px;">L2</span><div style="font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-muted);">Restricted</div></div>
+            <div style="background:var(--bg-page);border:1px solid var(--border);padding:10px 8px;text-align:center;opacity:0.38;"><span style="font-size:16px;color:var(--text-bright);display:block;margin-bottom:3px;">L3</span><div style="font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-muted);">Classified</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sbar">
+        <div class="sbh">About this wiki</div>
+        <div class="sbb">
+          <div style="font-size:11px;color:var(--text-muted);line-height:1.7;">Community-maintained encyclopedia for the HourGlass universe by <span style="color:var(--green);">MarrowVeil Studios</span>. All lore sourced from in-game documents, developer notes, and the MEK-AI terminal.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="ft">HourGlass Wiki &nbsp;|&nbsp; Community Archive &nbsp;|&nbsp; <a href="https://marrowveilstudios.com">marrowveilstudios.com</a></div>
+    <div class="ft">Not affiliated with MEK-A Corp. All records community-sourced.</div>
+  </div>
+
+  <script src="assets/js/wiki.js"></script>
+</body>
+</html>
