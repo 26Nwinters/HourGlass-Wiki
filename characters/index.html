@@ -4,138 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Characters — HourGlass Wiki</title>
-  <link rel="stylesheet" href="../assets/css/wiki.css" />
-  <style>
-    .filter-bar {
-      display: flex; align-items: center; gap: 8px;
-      margin-bottom: 20px; flex-wrap: wrap;
-    }
-    .filter-btn {
-      font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase;
-      padding: 5px 14px; border: 1px solid var(--border);
-      color: var(--text-dim); background: transparent;
-      cursor: pointer; font-family: 'Courier New', monospace;
-      transition: color 0.15s, border-color 0.15s, background 0.15s;
-    }
-    .filter-btn:hover { color: var(--text-bright); border-color: var(--border-lt); }
-    .filter-btn.active { color: var(--accent); border-color: var(--accent-dim); background: var(--bg-panel); }
-
-    .char-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-      gap: 10px;
-      margin-bottom: 32px;
-    }
-
-    .char-card {
-      background: var(--bg-panel);
-      border: 1px solid var(--border);
-      text-decoration: none;
-      display: block;
-      position: relative;
-      overflow: hidden;
-      transition: border-color 0.15s, background 0.15s;
-    }
-    .char-card::before {
-      content: '';
-      display: block; height: 2px;
-      position: absolute; top: 0; left: 0; right: 0;
-    }
-    .char-card.antagonist::before { background: var(--red); }
-    .char-card.protagonist::before { background: var(--accent-dim); }
-    .char-card.mech::before { background: var(--green); }
-    .char-card.staff::before { background: #8060c0; }
-    .char-card.unknown::before { background: #c9a84c; }
-    .char-card:hover { border-color: var(--border-lt); background: var(--bg-page); }
-
-    .char-card-img {
-      width: 100%; height: 110px;
-      background: var(--bg-deep);
-      border-bottom: 1px solid var(--border);
-      display: flex; align-items: center; justify-content: center;
-      position: relative; overflow: hidden;
-    }
-
-    .char-card-img-lines {
-      position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-      display: flex; flex-direction: column;
-      justify-content: center; align-items: center; gap: 3px;
-    }
-    .cpl { height: 1px; background: var(--border); opacity: 0.5; }
-
-    .char-card-img-label {
-      font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase;
-      color: var(--text-faint); position: relative;
-    }
-
-    .char-card-body { padding: 12px 14px 14px; }
-
-    .char-card-tags { display: flex; gap: 5px; margin-bottom: 8px; flex-wrap: wrap; }
-    .char-tag {
-      font-size: 8px; letter-spacing: 0.14em; text-transform: uppercase;
-      padding: 2px 7px; border: 1px solid var(--border);
-      color: var(--text-faint); background: var(--bg-deep);
-    }
-    .char-tag.red { border-color: #5a1515; color: var(--red); }
-    .char-tag.gold { border-color: #5a4a10; color: #c9a84c; }
-    .char-tag.green { border-color: #0a3a20; color: var(--green); }
-    .char-tag.cyan { border-color: var(--accent-dim); color: var(--accent); }
-
-    .char-name {
-      font-size: 15px; color: var(--text-bright);
-      letter-spacing: 0.05em; text-transform: uppercase;
-      margin-bottom: 4px; font-weight: bold;
-    }
-
-    .char-role {
-      font-size: 11px; color: var(--text-muted);
-      letter-spacing: 0.04em; margin-bottom: 8px;
-      font-style: italic;
-    }
-
-    .char-desc {
-      font-size: 11px; color: var(--text-dim);
-      line-height: 1.6;
-    }
-
-    .char-card-foot {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 8px 14px; border-top: 1px solid var(--border);
-      background: var(--bg-deep);
-    }
-    .char-file-id { font-size: 9px; letter-spacing: 0.1em; color: var(--text-faint); }
-    .char-arrow { font-size: 11px; color: var(--text-dim); }
-    .char-card:hover .char-arrow { color: var(--accent); }
-
-    .section-intro {
-      font-family: Georgia, serif;
-      font-size: 13px; color: var(--text-muted); line-height: 1.8;
-      margin-bottom: 24px; padding-bottom: 20px;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .alpha-jump {
-      display: flex; gap: 4px; flex-wrap: wrap; margin-bottom: 24px;
-    }
-    .alpha-btn {
-      font-size: 10px; letter-spacing: 0.08em;
-      width: 28px; height: 28px;
-      display: flex; align-items: center; justify-content: center;
-      border: 1px solid var(--border); color: var(--text-dim);
-      cursor: pointer; background: var(--bg-panel);
-      text-decoration: none; transition: color 0.15s, border-color 0.15s;
-    }
-    .alpha-btn:hover { color: var(--accent); border-color: var(--accent-dim); }
-    .alpha-btn.has-entries { color: var(--text-muted); border-color: var(--border-lt); }
-
-    .char-count-strip {
-      display: flex; gap: 0; margin-bottom: 28px; border: 1px solid var(--border);
-    }
-    .ccs { padding: 10px 20px; border-right: 1px solid var(--border); background: var(--bg-panel); text-align: center; }
-    .ccs:last-child { border-right: none; }
-    .ccs-n { font-size: 20px; color: var(--text-bright); display: block; margin-bottom: 3px; }
-    .ccs-l { font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-muted); }
-  </style>
+  <link rel="stylesheet" href="../assets/wiki.css" />
 </head>
 <body>
 
@@ -161,13 +30,13 @@
   </div>
 
   <nav class="tabbar">
-    <a class="tab" href="../index.html" data-section="home">Home</a>
-    <a class="tab active" href="index.html" data-section="characters">Characters</a>
-    <a class="tab" href="../Locations/index.html" data-section="locations">Locations</a>
-    <a class="tab" href="../Lore/index.html" data-section="lore">Lore</a>
-    <a class="tab" href="../MATCH-Files/index.html" data-section="match">M.A.T.C.H. Files</a>
-    <a class="tab" href="../Items/index.html" data-section="items">Items</a>
-    <a class="tab" href="../Timeline/index.html" data-section="timeline">Timeline</a>
+    <a class="tab" href="../index.html">Home</a>
+    <a class="tab active" href="index.html">Characters</a>
+    <a class="tab" href="../locations/index.html">Locations</a>
+    <a class="tab" href="../lore/index.html">Lore</a>
+    <a class="tab" href="../match-files/index.html">M.A.T.C.H. Files</a>
+    <a class="tab" href="../items/index.html">Items</a>
+    <a class="tab" href="../timeline/index.html">Timeline</a>
   </nav>
 
   <div class="breadcrumb">
@@ -200,7 +69,6 @@
   </div>
 
   <div class="mwrap">
-
     <div>
 
       <p class="section-intro">
@@ -222,240 +90,177 @@
 
       <div class="char-grid" id="char-grid">
 
-        <a class="char-card antagonist" href="Liu.html" data-role="antagonist" data-name="liu harper">
+        <a class="char-card antagonist" href="Liu.html" data-role="antagonist" data-name="liu harper architect">
           <div class="char-card-img">
             <div class="char-card-img-lines">
               <div class="cpl" style="width:55%;"></div><div class="cpl" style="width:40%;"></div>
-              <div class="cpl" style="width:65%;"></div><div class="cpl" style="width:35%;"></div>
-              <div class="cpl" style="width:50%;"></div>
+              <div class="cpl" style="width:65%;"></div><div class="cpl" style="width:35%;"></div><div class="cpl" style="width:50%;"></div>
             </div>
             <div class="infobox-img-fog"></div>
             <div class="char-card-img-label">No image recovered</div>
           </div>
           <div class="char-card-body">
-            <div class="char-card-tags">
-              <span class="char-tag gold">The Mind</span>
-              <span class="char-tag red">Antagonist</span>
-            </div>
+            <div class="char-card-tags"><span class="char-tag gold">The Mind</span><span class="char-tag red">Antagonist</span></div>
             <div class="char-name">Liu Harper</div>
             <div class="char-role">The Architect &nbsp;// &nbsp;MEK-A Corp</div>
             <div class="char-desc">His authorization signatures are everywhere. He is nowhere to be found.</div>
           </div>
-          <div class="char-card-foot">
-            <div class="char-file-id">P-0014 &nbsp;·&nbsp; L2+</div>
-            <div class="char-arrow">›</div>
-          </div>
+          <div class="char-card-foot"><div class="char-file-id">P-0014 &nbsp;·&nbsp; L2+</div><div class="char-arrow">›</div></div>
         </a>
 
-        <a class="char-card protagonist" href="Boa.html" data-role="protagonist" data-name="boa">
+        <a class="char-card protagonist" href="Boa.html" data-role="protagonist" data-name="boa urban explorer">
           <div class="char-card-img">
             <div class="char-card-img-lines">
               <div class="cpl" style="width:45%;"></div><div class="cpl" style="width:60%;"></div>
-              <div class="cpl" style="width:35%;"></div><div class="cpl" style="width:55%;"></div>
-              <div class="cpl" style="width:40%;"></div>
+              <div class="cpl" style="width:35%;"></div><div class="cpl" style="width:55%;"></div><div class="cpl" style="width:40%;"></div>
             </div>
             <div class="infobox-img-fog"></div>
             <div class="char-card-img-label">No image recovered</div>
           </div>
           <div class="char-card-body">
-            <div class="char-card-tags">
-              <span class="char-tag cyan">Protagonist</span>
-            </div>
+            <div class="char-card-tags"><span class="char-tag cyan">Protagonist</span></div>
             <div class="char-name">Boa</div>
             <div class="char-role">Urban Explorer &nbsp;// &nbsp;Missing Time</div>
             <div class="char-desc">19 years old. Her sister disappeared. She went looking and found something worse.</div>
           </div>
-          <div class="char-card-foot">
-            <div class="char-file-id">P-0001 &nbsp;·&nbsp; L0</div>
-            <div class="char-arrow">›</div>
-          </div>
+          <div class="char-card-foot"><div class="char-file-id">P-0001 &nbsp;·&nbsp; L0</div><div class="char-arrow">›</div></div>
         </a>
 
-        <a class="char-card mech" href="Lucky.html" data-role="mech" data-name="lucky">
+        <a class="char-card mech" href="Lucky.html" data-role="mech" data-name="lucky mech diner">
           <div class="char-card-img">
             <div class="char-card-img-lines">
               <div class="cpl" style="width:50%;"></div><div class="cpl" style="width:30%;"></div>
-              <div class="cpl" style="width:60%;"></div><div class="cpl" style="width:45%;"></div>
-              <div class="cpl" style="width:35%;"></div>
+              <div class="cpl" style="width:60%;"></div><div class="cpl" style="width:45%;"></div><div class="cpl" style="width:35%;"></div>
             </div>
             <div class="infobox-img-fog"></div>
             <div class="char-card-img-label">No image recovered</div>
           </div>
           <div class="char-card-body">
-            <div class="char-card-tags">
-              <span class="char-tag green">Mech Unit</span>
-              <span class="char-tag">Public Entertainment</span>
-            </div>
+            <div class="char-card-tags"><span class="char-tag green">Mech Unit</span><span class="char-tag">Public Entertainment</span></div>
             <div class="char-name">Lucky</div>
             <div class="char-role">Public Entertainment &nbsp;// &nbsp;The Diner</div>
             <div class="char-desc">Audio-only. Skate sounds, humming. The giggle at the end is not in the script.</div>
           </div>
-          <div class="char-card-foot">
-            <div class="char-file-id">MECH-003 &nbsp;·&nbsp; L0</div>
-            <div class="char-arrow">›</div>
-          </div>
+          <div class="char-card-foot"><div class="char-file-id">MECH-003 &nbsp;·&nbsp; L0</div><div class="char-arrow">›</div></div>
         </a>
 
-        <a class="char-card unknown" href="Moxie.html" data-role="unknown" data-name="moxie">
+        <a class="char-card unknown" href="Moxie.html" data-role="unknown" data-name="moxie soul triad">
           <div class="char-card-img">
             <div class="char-card-img-lines">
               <div class="cpl" style="width:40%;"></div><div class="cpl" style="width:55%;"></div>
-              <div class="cpl" style="width:30%;"></div><div class="cpl" style="width:50%;"></div>
-              <div class="cpl" style="width:45%;"></div>
+              <div class="cpl" style="width:30%;"></div><div class="cpl" style="width:50%;"></div><div class="cpl" style="width:45%;"></div>
             </div>
             <div class="infobox-img-fog"></div>
             <div class="char-card-img-label">No image recovered</div>
           </div>
           <div class="char-card-body">
-            <div class="char-card-tags">
-              <span class="char-tag gold">The Soul</span>
-              <span class="char-tag">Triad Member</span>
-            </div>
+            <div class="char-card-tags"><span class="char-tag gold">The Soul</span><span class="char-tag">Triad Member</span></div>
             <div class="char-name">Moxie</div>
             <div class="char-role">Symbolic Triad &nbsp;// &nbsp;All Titles</div>
             <div class="char-desc">The soul of the triad. Her role in the larger M.A.T.C.H. system is still being documented.</div>
           </div>
-          <div class="char-card-foot">
-            <div class="char-file-id">P-0009 &nbsp;·&nbsp; L1</div>
-            <div class="char-arrow">›</div>
-          </div>
+          <div class="char-card-foot"><div class="char-file-id">P-0009 &nbsp;·&nbsp; L1</div><div class="char-arrow">›</div></div>
         </a>
 
-        <a class="char-card unknown" href="Jackson.html" data-role="unknown" data-name="jackson">
+        <a class="char-card unknown" href="Jackson.html" data-role="unknown" data-name="jackson body triad">
           <div class="char-card-img">
             <div class="char-card-img-lines">
               <div class="cpl" style="width:60%;"></div><div class="cpl" style="width:40%;"></div>
-              <div class="cpl" style="width:50%;"></div><div class="cpl" style="width:35%;"></div>
-              <div class="cpl" style="width:55%;"></div>
+              <div class="cpl" style="width:50%;"></div><div class="cpl" style="width:35%;"></div><div class="cpl" style="width:55%;"></div>
             </div>
             <div class="infobox-img-fog"></div>
             <div class="char-card-img-label">No image recovered</div>
           </div>
           <div class="char-card-body">
-            <div class="char-card-tags">
-              <span class="char-tag gold">The Body</span>
-              <span class="char-tag">Triad Member</span>
-            </div>
+            <div class="char-card-tags"><span class="char-tag gold">The Body</span><span class="char-tag">Triad Member</span></div>
             <div class="char-name">Jackson</div>
             <div class="char-role">Symbolic Triad &nbsp;// &nbsp;All Titles</div>
             <div class="char-desc">The body of the triad. Physical consequence given form within the HourGlass universe.</div>
           </div>
-          <div class="char-card-foot">
-            <div class="char-file-id">P-0010 &nbsp;·&nbsp; L1</div>
-            <div class="char-arrow">›</div>
-          </div>
+          <div class="char-card-foot"><div class="char-file-id">P-0010 &nbsp;·&nbsp; L1</div><div class="char-arrow">›</div></div>
         </a>
 
         <a class="char-card protagonist" href="Nyli.html" data-role="protagonist" data-name="nyli">
           <div class="char-card-img">
             <div class="char-card-img-lines">
               <div class="cpl" style="width:35%;"></div><div class="cpl" style="width:55%;"></div>
-              <div class="cpl" style="width:45%;"></div><div class="cpl" style="width:60%;"></div>
-              <div class="cpl" style="width:40%;"></div>
+              <div class="cpl" style="width:45%;"></div><div class="cpl" style="width:60%;"></div><div class="cpl" style="width:40%;"></div>
             </div>
             <div class="infobox-img-fog"></div>
             <div class="char-card-img-label">No image recovered</div>
           </div>
           <div class="char-card-body">
-            <div class="char-card-tags">
-              <span class="char-tag cyan">Protagonist</span>
-            </div>
+            <div class="char-card-tags"><span class="char-tag cyan">Protagonist</span></div>
             <div class="char-name">Nyli</div>
             <div class="char-role">Unknown Affiliation &nbsp;// &nbsp;All Titles</div>
             <div class="char-desc">Connection to Liu Harper unconfirmed. Appears across multiple titles in an unclear capacity.</div>
           </div>
-          <div class="char-card-foot">
-            <div class="char-file-id">P-0003 &nbsp;·&nbsp; L1</div>
-            <div class="char-arrow">›</div>
-          </div>
+          <div class="char-card-foot"><div class="char-file-id">P-0003 &nbsp;·&nbsp; L1</div><div class="char-arrow">›</div></div>
         </a>
 
-        <a class="char-card staff" href="K-Illard.html" data-role="staff" data-name="k illard katie illard">
+        <a class="char-card staff" href="K-Illard.html" data-role="staff" data-name="k illard katie illard diner">
           <div class="char-card-img">
             <div class="char-card-img-lines">
               <div class="cpl" style="width:50%;"></div><div class="cpl" style="width:65%;"></div>
-              <div class="cpl" style="width:40%;"></div><div class="cpl" style="width:55%;"></div>
-              <div class="cpl" style="width:30%;"></div>
+              <div class="cpl" style="width:40%;"></div><div class="cpl" style="width:55%;"></div><div class="cpl" style="width:30%;"></div>
             </div>
             <div class="infobox-img-fog"></div>
             <div class="char-card-img-label">No image recovered</div>
           </div>
           <div class="char-card-body">
-            <div class="char-card-tags">
-              <span class="char-tag">MEK-A Staff</span>
-              <span class="char-tag">Diner</span>
-            </div>
+            <div class="char-card-tags"><span class="char-tag">MEK-A Staff</span><span class="char-tag">Diner</span></div>
             <div class="char-name">K. Illard</div>
             <div class="char-role">Floor Service &amp; Arcade &nbsp;// &nbsp;The Diner</div>
             <div class="char-desc">The L0 face of the MEK-AI terminal. Filed more maintenance requests than anyone else on record.</div>
           </div>
-          <div class="char-card-foot">
-            <div class="char-file-id">P-0022 &nbsp;·&nbsp; L0</div>
-            <div class="char-arrow">›</div>
-          </div>
+          <div class="char-card-foot"><div class="char-file-id">P-0022 &nbsp;·&nbsp; L0</div><div class="char-arrow">›</div></div>
         </a>
 
-        <a class="char-card staff" href="S-Vandyke.html" data-role="staff" data-name="s vandyke vandyke">
+        <a class="char-card staff" href="S-Vandyke.html" data-role="staff" data-name="s vandyke vandyke fairgrounds">
           <div class="char-card-img">
             <div class="char-card-img-lines">
               <div class="cpl" style="width:45%;"></div><div class="cpl" style="width:30%;"></div>
-              <div class="cpl" style="width:60%;"></div><div class="cpl" style="width:40%;"></div>
-              <div class="cpl" style="width:55%;"></div>
+              <div class="cpl" style="width:60%;"></div><div class="cpl" style="width:40%;"></div><div class="cpl" style="width:55%;"></div>
             </div>
             <div class="infobox-img-fog"></div>
             <div class="char-card-img-label">No image recovered</div>
           </div>
           <div class="char-card-body">
-            <div class="char-card-tags">
-              <span class="char-tag">MEK-A Staff</span>
-              <span class="char-tag red">Suspected Leak</span>
-            </div>
+            <div class="char-card-tags"><span class="char-tag">MEK-A Staff</span><span class="char-tag red">Suspected Leak</span></div>
             <div class="char-name">S. Vandyke</div>
             <div class="char-role">Diner → Fairgrounds &nbsp;// &nbsp;Transferred</div>
             <div class="char-desc">Quietly transferred the same day as INC-0019. Boa's sister. Internal leak suspected.</div>
           </div>
-          <div class="char-card-foot">
-            <div class="char-file-id">P-0031 &nbsp;·&nbsp; L2</div>
-            <div class="char-arrow">›</div>
-          </div>
+          <div class="char-card-foot"><div class="char-file-id">P-0031 &nbsp;·&nbsp; L2</div><div class="char-arrow">›</div></div>
         </a>
 
-        <a class="char-card staff" href="D-Mercer.html" data-role="staff" data-name="d mercer mercer">
+        <a class="char-card staff" href="D-Mercer.html" data-role="staff" data-name="d mercer mercer inactive">
           <div class="char-card-img">
             <div class="char-card-img-lines">
               <div class="cpl" style="width:55%;"></div><div class="cpl" style="width:40%;"></div>
-              <div class="cpl" style="width:30%;"></div><div class="cpl" style="width:60%;"></div>
-              <div class="cpl" style="width:45%;"></div>
+              <div class="cpl" style="width:30%;"></div><div class="cpl" style="width:60%;"></div><div class="cpl" style="width:45%;"></div>
             </div>
             <div class="infobox-img-fog"></div>
             <div class="char-card-img-label">No image recovered</div>
           </div>
           <div class="char-card-body">
-            <div class="char-card-tags">
-              <span class="char-tag">MEK-A Staff</span>
-              <span class="char-tag red">Inactive</span>
-            </div>
+            <div class="char-card-tags"><span class="char-tag">MEK-A Staff</span><span class="char-tag red">Inactive</span></div>
             <div class="char-name">D. Mercer</div>
             <div class="char-role">Unknown Role &nbsp;// &nbsp;Inactive post-INC-0019</div>
             <div class="char-desc">Goes inactive immediately following INC-0019. Last contact with K. Illard via staff messages.</div>
           </div>
-          <div class="char-card-foot">
-            <div class="char-file-id">P-0028 &nbsp;·&nbsp; L2</div>
-            <div class="char-arrow">›</div>
-          </div>
+          <div class="char-card-foot"><div class="char-file-id">P-0028 &nbsp;·&nbsp; L2</div><div class="char-arrow">›</div></div>
         </a>
 
       </div>
 
-      <div id="no-results" style="display:none; padding: 28px; text-align:center; color:var(--text-dim); font-size:12px; letter-spacing:0.08em; border: 1px solid var(--border); background: var(--bg-panel);">
+      <div id="no-results" style="display:none;padding:28px;text-align:center;color:var(--text-dim);font-size:12px;letter-spacing:0.08em;border:1px solid var(--border);background:var(--bg-panel);">
         No characters match that search.
       </div>
 
     </div>
 
-    <!-- SIDEBAR -->
     <div>
-
       <div class="sbar">
         <div class="sbh">Jump to character</div>
         <div class="sbb" style="padding:0;">
@@ -475,18 +280,9 @@
       <div class="sbar">
         <div class="sbh">Symbolic triad</div>
         <div class="sbb" style="padding:0;">
-          <a class="slink" href="Liu.html">
-            <span class="a">›</span>
-            <span style="color:#c9a84c;">The Mind</span> &nbsp;— Liu Harper
-          </a>
-          <a class="slink" href="Jackson.html">
-            <span class="a">›</span>
-            <span style="color:#c9a84c;">The Body</span> &nbsp;— Jackson
-          </a>
-          <a class="slink" href="Moxie.html">
-            <span class="a">›</span>
-            <span style="color:#c9a84c;">The Soul</span> &nbsp;— Moxie
-          </a>
+          <a class="slink" href="Liu.html"><span class="a">›</span><span style="color:#c9a84c;">The Mind</span> &nbsp;— Liu Harper</a>
+          <a class="slink" href="Jackson.html"><span class="a">›</span><span style="color:#c9a84c;">The Body</span> &nbsp;— Jackson</a>
+          <a class="slink" href="Moxie.html"><span class="a">›</span><span style="color:#c9a84c;">The Soul</span> &nbsp;— Moxie</a>
         </div>
       </div>
 
@@ -496,16 +292,6 @@
           <div class="cl-note">Some personnel files are partially or fully restricted. <span class="r">L2 and L3 entries</span> may display redacted sections. Cross-reference the MEK-AI terminal to unlock additional records.</div>
         </div>
       </div>
-
-      <div class="sbar">
-        <div class="sbh">By game</div>
-        <div class="sbb" style="padding:0;">
-          <a class="slink" href="index.html?filter=missing-time"><span class="a">›</span>Missing Time</a>
-          <a class="slink" href="index.html?filter=lost-time"><span class="a">›</span>Lost Time</a>
-          <a class="slink" href="index.html?filter=lost-relics"><span class="a">›</span>Lost Relics</a>
-        </div>
-      </div>
-
     </div>
   </div>
 
@@ -514,15 +300,17 @@
     <div class="ft">Not affiliated with MEK-A Corp. All records community-sourced.</div>
   </div>
 
-  <script src="../assets/js/wiki.js"></script>
+  <script src="../assets/wiki.js"></script>
   <script>
-    // ── FILTER BUTTONS ──
     var filterBtns = document.querySelectorAll('.filter-btn');
     var cards = document.querySelectorAll('.char-card');
     var countEl = document.getElementById('char-visible-count');
+    var searchBox = document.getElementById('char-search');
+    var noResults = document.getElementById('no-results');
 
     function updateCount() {
-      var visible = document.querySelectorAll('.char-card:not([style*="display: none"])').length;
+      var visible = 0;
+      cards.forEach(function(c) { if (c.style.display !== 'none') visible++; });
       countEl.textContent = visible + ' ' + (visible === 1 ? 'entry' : 'entries');
     }
 
@@ -532,39 +320,22 @@
         btn.classList.add('active');
         var filter = btn.getAttribute('data-filter');
         cards.forEach(function(card) {
-          if (filter === 'all' || card.getAttribute('data-role') === filter) {
-            card.style.display = 'block';
-          } else {
-            card.style.display = 'none';
-          }
+          card.style.display = (filter === 'all' || card.getAttribute('data-role') === filter) ? 'block' : 'none';
         });
         updateCount();
       });
     });
 
-    // ── SEARCH ──
-    var searchBox = document.getElementById('char-search');
-    var noResults = document.getElementById('no-results');
-
     searchBox.addEventListener('input', function() {
       var query = this.value.toLowerCase().trim();
       var anyVisible = false;
-
-      // Reset filters when searching
       filterBtns.forEach(function(b) { b.classList.remove('active'); });
       document.querySelector('[data-filter="all"]').classList.add('active');
-
       cards.forEach(function(card) {
-        var name = card.getAttribute('data-name') || '';
-        var bodyText = card.textContent.toLowerCase();
-        if (!query || name.indexOf(query) !== -1 || bodyText.indexOf(query) !== -1) {
-          card.style.display = 'block';
-          anyVisible = true;
-        } else {
-          card.style.display = 'none';
-        }
+        var match = !query || card.getAttribute('data-name').indexOf(query) !== -1 || card.textContent.toLowerCase().indexOf(query) !== -1;
+        card.style.display = match ? 'block' : 'none';
+        if (match) anyVisible = true;
       });
-
       noResults.style.display = anyVisible ? 'none' : 'block';
       updateCount();
     });
